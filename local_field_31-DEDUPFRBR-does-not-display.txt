@@ -1,0 +1,7 @@
+rule "Primo VE - Lds31"
+	when
+		MARC is "952"."z" AND
+                MARC."952"."z" match "f49875rjh23zzz"
+	then
+		create pnx."display"."lds19" with MARC "952" excluding num subfields without sort
+end

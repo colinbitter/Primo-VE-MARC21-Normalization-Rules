@@ -1,0 +1,7 @@
+rule "Primo VE - Rights"
+	when
+		MARC is "540"."z" AND
+                MARC."540"."z" match "f49875rjh23zzz"
+	then
+		create pnx."display"."rights" with MARC "540" excluding num subfields without sort
+end

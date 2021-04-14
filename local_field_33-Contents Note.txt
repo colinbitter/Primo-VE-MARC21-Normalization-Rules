@@ -1,0 +1,14 @@
+rule "Primo VE - Lds33"
+	when
+		MARC is "505"
+	then
+		create pnx."display"."lds33" with MARC "505" sub without sort "a,g,r,t,u"
+end
+
+rule "Primo VE - 880-505"
+when
+MARC."880" has any "a,g,r,t,u" AND
+MARC."880"."6" match "505-.*"
+then 
+create pnx."display"."lds33" with MARC "880" sub without sort "a,g,r,t,u"
+end

@@ -1,0 +1,13 @@
+rule "Primo VE - frequency"
+	when
+		MARC is "310"
+	then
+		create pnx."display"."frequency" with MARC "310" excluding num subfields without sort
+end
+
+rule "Primo VE - frequency part 2"
+	when
+		MARC is "321"
+	then
+		create pnx."display"."frequency" with MARC "321" excluding num subfields without sort
+end

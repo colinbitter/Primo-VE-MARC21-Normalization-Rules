@@ -1,0 +1,7 @@
+rule "Primo VE - Lds32"
+	when
+                MARC is "951" AND
+		MARC."951"."5" match "NjEiC.*"
+	then
+		create pnx."display"."lds32" with MARC "951" subfields "a"
+end

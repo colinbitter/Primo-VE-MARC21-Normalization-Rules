@@ -1,0 +1,6 @@
+rule "Primo VE - Lds01"
+	when
+		MARC is "511"."a"
+	then
+		create pnx."display"."lds01" with MARC."511"."a"
+end

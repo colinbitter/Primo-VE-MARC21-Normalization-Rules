@@ -1,0 +1,209 @@
+rule "Primo VE - Series 490"
+	when
+		MARC."490" has any "a" AND
+MARC."490".ind"1" equals "0"
+	then
+	    set TEMP"1" to MARC "490" excluding num subfields without sort
+		set TEMP"2" to MARC."490" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+    	kormarc remove nonfiling brackets MARC."490" sourcetag "490" from TEMP"1"
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 800"
+	when
+		MARC."800" has any "t"
+	then
+	    set TEMP"1" to MARC "800" excluding num subfields without sort
+		set TEMP"2" to MARC."800" sub without sort "t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+		set TEMP"3" to MARC."800" prima_w_relation "w"
+		set TEMP"4" to MARC."800" prima_x_relation "x"
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        concatenate with delimiter (TEMP"1",TEMP"4","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 810"
+	when
+		MARC."810" has any "t"
+	then
+	    set TEMP"1" to MARC "810" excluding num subfields without sort
+		set TEMP"2" to MARC."810" sub without sort "t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        set TEMP"3" to MARC."810" prima_w_relation "w"
+		set TEMP"4" to MARC."810" prima_x_relation "x"
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 811"
+	when
+		MARC."811" has any "t"
+	then
+	    set TEMP"1" to MARC "811" excluding num subfields without sort
+		set TEMP"2" to MARC."811" sub without sort "t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        set TEMP"3" to MARC."811" prima_w_relation "w"
+		set TEMP"4" to MARC."811" prima_x_relation "x"
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 830"
+	when
+		MARC."830" has any "a,t"
+	then
+	    set TEMP"1" to MARC "830" excluding num subfields without sort
+		set TEMP"2" to MARC."830" sub without sort "a,t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        set TEMP"3" to MARC."830" prima_w_relation "w"
+		set TEMP"4" to MARC."830" prima_x_relation "x"
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+        kormarc remove nonfiling brackets MARC."830" sourcetag "830" from TEMP"1"
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 840"
+	when
+		MARC."840" has any "a"
+	then
+	    set TEMP"1" to MARC "840" excluding num subfields without sort
+		set TEMP"2" to MARC."840" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 880-400"
+	when
+		MARC."880" has any "a" AND
+		MARC."880"."6" match "400-.*"
+
+	then
+	    set TEMP"1" to MARC "880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 880-440"
+	when
+		MARC."880" has any "a" AND
+		MARC."880"."6" match "440-.*"
+	then
+	    set TEMP"1" to MARC "880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 880-490"
+	when
+		MARC."880" has any "a" AND
+		MARC."880"."6" match "490-.*"
+	then
+	    set TEMP"1" to MARC "880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 880-800"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "800-.*"
+	then
+	    set TEMP"1" to MARC "880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 880-810"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "810-.*"
+	then
+	    set TEMP"1" to MARC "880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 880-811"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "811-.*"
+	then
+	    set TEMP"1" to MARC "880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 880-830"
+	when
+		MARC."880" has any "a,t" AND
+		MARC."880"."6" match "830-.*"
+	then
+	    set TEMP"1" to MARC "880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a,t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end
+
+rule "Primo VE - Series 880-840"
+	when
+		MARC."880" has any "a" AND
+		MARC."880"."6" match "840.*"
+	then
+	    set TEMP"1" to MARC "880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."series" with TEMP"1"
+end

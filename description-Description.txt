@@ -1,0 +1,7 @@
+rule "Primo VE - Description 520"
+	when
+        MARC is "520"."z" AND
+       MARC."520"."z" match "456479gf8dgfd"
+	then
+        create pnx."display"."description" with MARC."520" excluding num subfields without sort
+end

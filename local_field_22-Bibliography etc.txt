@@ -1,0 +1,6 @@
+rule "Primo VE - Lds22"
+	when
+		MARC is "504"
+	then
+		create pnx."display"."lds22" with MARC "504" excluding num subfields without sort
+end

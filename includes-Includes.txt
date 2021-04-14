@@ -1,0 +1,124 @@
+rule "Primo VE - Includes 700"
+    when
+		MARC."700" has any "t" AND
+		MARC."700".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."700" subfields "i"
+		set TEMP"2" to MARC."700" excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		set TEMP"3" to MARC."700" excluding subfields  without sorting "[0-9]|x|i|f|="
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."includes" with TEMP"2"
+end
+
+rule "Primo VE - Includes 710"
+    when
+		MARC."710" has any "t" AND
+		MARC."710".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."710" subfields "i"
+		set TEMP"2" to MARC."710" excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		set TEMP"3" to MARC."710" excluding subfields  without sorting "[0-9]|x|i|f|="
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."includes" with TEMP"2"
+end
+
+rule "Primo VE - Includes 711"
+    when
+		MARC."711" has any "t" AND
+		MARC."711".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."711" subfields "i"
+		set TEMP"2" to MARC."711" excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		set TEMP"3" to MARC."711" excluding subfields  without sorting "[0-9]|x|i|f|="
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."includes" with TEMP"2"
+end
+
+rule "Primo VE - Includes 730"
+    when
+		MARC."730" has any "a" AND
+		MARC."730".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."730" subfields "i"
+		set TEMP"2" to MARC."730" excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		set TEMP"3" to MARC."730" excluding subfields  without sorting "[0-9]|x|i|f|="
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."includes" with TEMP"2"
+end
+
+rule "Primo VE - Includes 100/240"
+	when
+		MARC is "100" AND
+		MARC is "240"
+	then
+	    set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|="
+        set TEMP"2" to MARC."240" excluding numeric subfields
+        concatenate with delimiter (TEMP"1",TEMP"2"," ")
+        set TEMP"3" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"4" to MARC."240" excluding subfields without sorting "[0-9]|f|="
+        concatenate with delimiter (TEMP"3",TEMP"4"," ")
+        add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."includes" with TEMP"1"
+end
+
+rule "Primo VE - Includes 110/240"
+	when
+		MARC is "110" AND
+		MARC is "240"
+	then
+	    set TEMP"1" to MARC."110" excluding subfields without sorting "[0-9]|e|="
+        set TEMP"2" to MARC."240" excluding numeric subfields
+        concatenate with delimiter (TEMP"1",TEMP"2"," ")
+        set TEMP"3" to MARC."110" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"4" to MARC."240" excluding subfields without sorting "[0-9]|f|="
+        concatenate with delimiter (TEMP"3",TEMP"4"," ")
+        add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."includes" with TEMP"1"
+end
+
+rule "Primo VE - Includes 111/240"
+	when
+		MARC is "111" AND
+		MARC is "240"
+	then
+	    set TEMP"1" to MARC."111" excluding subfields without sorting "[0-9]|e|="
+        set TEMP"2" to MARC."240" excluding numeric subfields
+        concatenate with delimiter (TEMP"1",TEMP"2"," ")
+        set TEMP"3" to MARC."111" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"4" to MARC."240" excluding subfields without sorting "[0-9]|f|="
+        concatenate with delimiter (TEMP"3",TEMP"4"," ")
+        add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."includes" with TEMP"1"
+end
+
+rule "Primo VE - Includes 130"
+    when
+		MARC."130" has any "a"
+	then
+		set TEMP"1" to MARC."130" subfields "i"
+		set TEMP"2" to MARC."130" excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		set TEMP"3" to MARC."130" excluding subfields  without sorting "[0-9]|x|i|f|="
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."includes" with TEMP"2"
+end

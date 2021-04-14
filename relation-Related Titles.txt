@@ -1,0 +1,140 @@
+rule "Primo VE - Relation 770"
+	when
+		MARC is "770"."t"
+	then
+		set TEMP"1" to MARC "770" excluding subfields without sorting "u|w|x|y|z|9"
+		add prefix (TEMP"1","$$Csupplement$$V")
+		set TEMP"2" to MARC."770"."t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        set TEMP"3" to MARC."770" prima_w_relation "w"
+		set TEMP"4" to MARC."770" prima_x_relation "x"
+		set TEMP"5" to MARC."770" prima_x_relation "z"
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		concatenate with delimiter (TEMP"1",TEMP"5","")
+		create pnx."display"."relation" with TEMP"1"
+end
+
+rule "Primo VE - Relation 772"
+	when
+		MARC is "772"."t"
+	then
+		set TEMP"1" to MARC "772" excluding subfields without sorting "u|w|x|y|z|9"
+		add prefix (TEMP"1","$$Csupp_parent$$V")
+		set TEMP"2" to MARC."772"."t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        set TEMP"3" to MARC."772" prima_w_relation "w"
+		set TEMP"4" to MARC."772" prima_x_relation "x"
+		set TEMP"5" to MARC."772" prima_x_relation "z"
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		concatenate with delimiter (TEMP"1",TEMP"5","")
+		create pnx."display"."relation" with TEMP"1"
+end
+
+
+rule "Primo VE - Relation 780"
+	when
+		MARC is "780"."t"
+	then
+		set TEMP"1" to MARC "780" excluding subfields without sorting "u|w|x|y|z|9"
+		add prefix (TEMP"1","$$Cearlier_title$$V")
+		set TEMP"2" to MARC."780"."t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        set TEMP"3" to MARC."780" prima_w_relation "w"
+		set TEMP"4" to MARC."780" prima_x_relation "x"
+		set TEMP"5" to MARC."780" prima_x_relation "z"
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		concatenate with delimiter (TEMP"1",TEMP"5","")
+		create pnx."display"."relation" with TEMP"1"
+end
+
+rule "Primo VE - Relation 785"
+	when
+		MARC is "785"."t"
+	then
+		set TEMP"1" to MARC "785" excluding subfields without sorting "u|w|x|y|z|9"
+		add prefix (TEMP"1","$$Clater_title$$V")
+		set TEMP"2" to MARC."785"."t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        set TEMP"3" to MARC."785" prima_w_relation "w"
+		set TEMP"4" to MARC."785" prima_x_relation "x"
+		set TEMP"5" to MARC."785" prima_x_relation "z"
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+		concatenate with delimiter (TEMP"1",TEMP"4","")
+		concatenate with delimiter (TEMP"1",TEMP"5","")
+		create pnx."display"."relation" with TEMP"1"
+end
+
+rule "Primo VE - Relation 880-770"
+	when
+		MARC is "880"."t" AND
+		MARC."880"."6" match "770-.*"
+	then
+		set TEMP"1" to MARC "880" excluding subfields without sorting "u|w|x|y|z"
+		add prefix (TEMP"1","$$Csupplement$$V")
+		set TEMP"2" to MARC."880"."t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."relation" with TEMP"1"
+end
+
+rule "Primo VE - Relation 880-772"
+	when
+		MARC is "880"."t" AND
+		MARC."880"."6" match "772-.*"
+	then
+		set TEMP"1" to MARC "880" excluding subfields without sorting "u|w|x|y|z"
+		add prefix (TEMP"1","$$Csupp_parent$$V")
+		set TEMP"2" to MARC."880"."t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."relation" with TEMP"1"
+end
+
+rule "Primo VE - Relation 880-780"
+	when
+		MARC is "880"."t" AND
+		MARC."880"."6" match "780-.*"
+	then
+		set TEMP"1" to MARC "880" excluding subfields without sorting "u|w|x|y|z"
+		add prefix (TEMP"1","$$Cearlier_title$$V")
+		set TEMP"2" to MARC."880"."t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."relation" with TEMP"1"
+end
+
+rule "Primo VE - Relation 880-785"
+	when
+		MARC is "880"."t" AND
+		MARC."880"."6" match "785-.*"
+	then
+		set TEMP"1" to MARC "880" excluding subfields without sorting "u|w|x|y|z"
+		add prefix (TEMP"1","$$Clater_title$$V")
+		set TEMP"2" to MARC."880"."t"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."relation" with TEMP"1"
+end

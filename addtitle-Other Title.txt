@@ -1,0 +1,60 @@
+rule "Primo VE - addtitle 246"
+	when
+		MARC."246" has any "i,a,b,f,g,n,p"
+	then
+		create pnx."display"."addtitle" with MARC."246" sub without sort "i,a,b,f,g,n,p"
+end
+
+rule "Primo VE - addtitle 247"
+	when
+		MARC."247" has any "i,a,b,f,g,n,p"
+	then
+		create pnx."display"."addtitle" with MARC."247" sub without sort "i,a,b,f,g,n,p"
+end
+
+rule "Primo VE - addtitle 740"
+	when
+		MARC is "740"
+	then
+		create pnx."display"."addtitle" with MARC."740" excluding num subfields without sort
+end
+
+rule "Primo VE - addtitle 840"
+	when
+		MARC is "840"
+	then
+		create pnx."display"."addtitle" with MARC."840" excluding num subfields without sort
+end
+
+rule "Primo VE - addtitle 880-246"
+	when
+		MARC."880" has any "i,a,b,f,g,n,p" AND
+		MARC."880"."6" match "246-.*"
+
+	then
+		create pnx."display"."addtitle" with MARC."880" sub without sort "i,a,b,f,g,n,p"
+end
+
+rule "Primo VE - addtitle 880-247"
+	when
+		MARC."880" has any "i,a,b,f,g,n,p" AND
+		MARC."880"."6" match "247-.*"
+	then
+		create pnx."display"."addtitle" with MARC."880" sub without sort "i,a,b,f,g,n,p"
+end
+
+rule "Primo VE - addtitle 880-740"
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "740-.*"
+	then
+		create pnx."display"."addtitle" with MARC."880" excluding num subfields without sort
+end
+
+rule "Primo VE - addtitle 880-840"
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "840-.*"
+	then
+		create pnx."display"."addtitle" with MARC."880" excluding num subfields without sort
+end

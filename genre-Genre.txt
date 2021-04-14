@@ -1,0 +1,7 @@
+rule "Primo VE - Genre 655 7"
+	when
+        MARC is "655"."a" AND
+MARC."655"."2" match "lcgft"
+	then
+        create pnx."display"."genre" with MARC."655"."a"
+end

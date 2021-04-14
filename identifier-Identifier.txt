@@ -1,0 +1,8 @@
+rule "Primo VE - Identifier 020"
+	when
+		MARC is "020"."a"
+	then
+		set TEMP"1" to MARC "020"."a"
+		add prefix (TEMP"1","$$CISBN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
