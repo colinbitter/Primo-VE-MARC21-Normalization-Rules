@@ -155,3 +155,11 @@ rule "Primo VE - publisher 264/2"
 	then
 	 create pnx."display"."publisher_notes" with MARC."264" sub without sort "a,b"
 end
+
+rule "Primo VE - publisher 264/3"
+	when
+		MARC."264" has any "a,b" AND
+		MARC."264".ind"2"  equals "3"
+	then
+	 create pnx."display"."publisher_notes" with MARC."264" sub without sort "a,b"
+end
